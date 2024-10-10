@@ -40,21 +40,6 @@ const handleDateChange = (data: any) => {
   setDateState([data?.selection])
 }
 
-useEffect(() => {
-  const difference = differenceInDays(
-    parse(params?.get("endDate")!, "dd-MM-y", new Date()), // we are parse the date value bcoz in params we get these values in string so we have to parse it into date
-    parse(params?.get("startDate")!, "dd-MM-y", new Date()) // iska matlab hai ki params(url) me se startdate and enddate nikal ke do aur unke beech ka difference nikal ke do
-  )
-
-  if(difference){
-    setSearchedParamas({
-      ...searchedParams,
-      country: params.get("country") ? params.get("country")! : "",
-      days: `${difference} days`
-    })
-  }
-}, [params])
-
 const handleSubmit = () => {
   const startdate = format(dateState[0].startDate, "dd-MM-y")
   const enddate = format(dateState[0].endDate, "dd-MM-y")
